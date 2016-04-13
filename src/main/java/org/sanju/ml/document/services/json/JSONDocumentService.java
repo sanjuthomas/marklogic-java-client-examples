@@ -26,7 +26,11 @@ public class JSONDocumentService extends DocumentService{
 		documentManager.write(super.generateURI(dummyDocument), new JacksonHandle(jsonNode));
 	}
 
-
+	/**
+	 *
+	 * @param dummyDocument
+	 * @return
+	 */
 	public DummyDocument find(final DummyDocument dummyDocument){
 
 		final JSONDocumentManager documentManager = this.createDocumentManager();
@@ -39,6 +43,10 @@ public class JSONDocumentService extends DocumentService{
 		return null;
 	}
 
+	/**
+	 *
+	 * @param dummyDocument
+	 */
 	public void delete(final DummyDocument dummyDocument){
 
 		final JSONDocumentManager documentManager = this.createDocumentManager();
