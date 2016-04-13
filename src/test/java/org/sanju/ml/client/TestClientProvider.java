@@ -3,6 +3,7 @@ package org.sanju.ml.client;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+import org.sanju.ml.client.ClientProvider;
 
 import com.marklogic.client.DatabaseClient;
 
