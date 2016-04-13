@@ -1,4 +1,4 @@
-package org.sanju.ml.document.json;
+package org.sanju.ml.document.services.json;
 
 import org.sanju.ml.document.pojo.DummyDocument;
 import org.sanju.ml.document.services.DocumentService;

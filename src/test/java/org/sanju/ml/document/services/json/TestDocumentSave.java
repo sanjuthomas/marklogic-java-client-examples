@@ -1,4 +1,4 @@
-package org.sanju.ml.document.json;
+package org.sanju.ml.document.services.json;
 
 import static org.junit.Assert.assertEquals;
 
