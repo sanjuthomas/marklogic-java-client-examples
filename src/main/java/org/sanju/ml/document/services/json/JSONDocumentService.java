@@ -39,4 +39,10 @@ public class JSONDocumentService extends DocumentService{
 		return null;
 	}
 
+	public void delete(final DummyDocument dummyDocument){
+
+		final JSONDocumentManager documentManager = this.createDocumentManager();
+		documentManager.delete(super.generateURI(dummyDocument));
+	}
+
 }

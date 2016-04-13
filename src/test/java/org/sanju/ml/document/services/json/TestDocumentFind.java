@@ -22,7 +22,7 @@ public class TestDocumentFind {
 		this.documentService.save(dummyDocument);
 	}
 	@Test
-	public void shouldSave(){
+	public void shouldFind(){
 		final DummyDocument dummyDocument = new DummyDocument(1001);
 		final DummyDocument dummyDocumentFromDB = this.documentService.find(dummyDocument);
 		assertEquals(1001, dummyDocumentFromDB.getId());
