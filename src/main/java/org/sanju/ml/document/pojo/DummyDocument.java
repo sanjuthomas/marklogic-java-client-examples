@@ -7,6 +7,12 @@ package org.sanju.ml.document.pojo;
  */
 public class DummyDocument {
 
+	public DummyDocument(){}
+
+	public DummyDocument(final int id){
+		this.id = id;
+	}
+
 	public DummyDocument(final int id, final String name){
 		this.id = id;
 		this.name = name;
