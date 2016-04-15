@@ -4,7 +4,9 @@ import org.sanju.ml.document.pojo.DummyDocument;
 import org.sanju.ml.document.services.DocumentService;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.marklogic.client.document.DocumentMetadataPatchBuilder.PatchHandle;
 import com.marklogic.client.document.DocumentPage;
+import com.marklogic.client.document.DocumentPatchBuilder;
 import com.marklogic.client.document.JSONDocumentManager;
 import com.marklogic.client.io.JacksonHandle;
 
@@ -51,6 +53,21 @@ public class JSONDocumentService extends DocumentService{
 
 		final JSONDocumentManager documentManager = this.createDocumentManager();
 		documentManager.delete(super.generateURI(dummyDocument));
+	}
+
+
+	/**
+	 * Patch let you update the document with partial content. Just like an SQL update on the specific columns.
+	 *
+	 * @param dummyDocument
+	 */
+	public void patch(final DummyDocument dummyDocument, final String key, final String value ){
+
+		final JSONDocumentManager documentManager = this.createDocumentManager();
+		mapper.convertValue(dummyDocument, JsonNode.class);
+		final DocumentPatchBuilder newPatchBuilder = documentManager.newPatchBuilder();
+		final PatchHandle patchBldr =  newPatchBuilder.replaceValue(key, value).build();
+		documentManager.patch(super.generateURI(dummyDocument), patchBldr);
 	}
 
 }
