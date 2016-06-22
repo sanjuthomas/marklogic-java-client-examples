@@ -1,12 +1,15 @@
 package org.sanju.ml.document.services.json;
 
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import org.sanju.ml.document.pojo.DummyDocument;
 import org.sanju.ml.document.services.DocumentService;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.marklogic.client.document.JSONDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.JacksonHandle;
@@ -35,9 +38,18 @@ public class JSONDocumentWithMetadataService extends DocumentService{
 		documentManager.write(super.generateURI(dummyDocument), metadataHandle, new JacksonHandle(jsonNode));
 	}
 
-	public Properties readProperties(final DummyDocument dummyDocument){
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> readProperties(final DummyDocument dummyDocument){
 
-		return null;
+		final JSONDocumentManager documentManager = this.createDocumentManager();
+		final JacksonHandle jsonHandle = new JacksonHandle();
+		documentManager.readMetadata(super.generateURI(dummyDocument), jsonHandle).get();
+		final ObjectMapper mapper = new ObjectMapper();
+		final JsonNode jsonNode = jsonHandle.get().get("properties");
+		if (null != jsonNode) {
+			return mapper.convertValue(jsonNode, Map.class);
+		}
+		return new HashMap<String, Object>();
 	}
 
 }
