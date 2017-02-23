@@ -64,7 +64,6 @@ public class JSONDocumentService extends DocumentService{
 	public void patch(final DummyDocument dummyDocument, final String key, final String value ){
 
 		final JSONDocumentManager documentManager = this.createDocumentManager();
-		mapper.convertValue(dummyDocument, JsonNode.class);
 		final DocumentPatchBuilder newPatchBuilder = documentManager.newPatchBuilder();
 		final PatchHandle patchBldr =  newPatchBuilder.replaceValue(key, value).build();
 		documentManager.patch(super.generateURI(dummyDocument), patchBldr);
